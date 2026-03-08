@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     posts: [], //Will hold posts from Reddit
     isLoading: false,
-    error: null,
+    error: false,
 }
 
 export const postsSlice = createSlice({
