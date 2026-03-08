@@ -12,8 +12,7 @@ export default function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/search/:term" element={<SearchResults />} />
+      <Route path="/" element={<Home />} />      
       <Route path="/r/:subredditName" element={<Subreddit />} />
       <Route path="/r/:subredditName/:postId" element={<Post />} />
     </Routes>
