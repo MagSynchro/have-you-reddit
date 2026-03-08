@@ -7,11 +7,13 @@ import Breadcrumbs from "../components/Breadcrumbs";
 export default function Home() {
   const breadcrumbPath = [{ name: "Home", url: "/" }]; // static for now will be wiring up later with fetch info.
   const [results, setResults] = useState([]);
+  
   useEffect(() => {
     fetchResults("Popular");
   }, []);
 
-  const fectchResults = async (term) => {
+
+  const fetchResults = async (term) => {
     // For now, setting dummy results for best feedback with console.log shadow
     const dummyResults = [
       { id: 1, title: "Result On"},
