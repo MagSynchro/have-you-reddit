@@ -1,48 +1,20 @@
-// src/pages/Home.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Header from "../components/Header";
 import Breadcrumbs from "../components/Breadcrumbs";
 import SearchResults from "../components/SearchResults";
+import { fetchPosts, selectPosts, selectPostsLoading, selectPostsError } from "../features/posts/postsSlice";
 
 export default function Home() {
   const breadcrumbPath = [{ name: "Home", url: "/" }];
+  const dispatch = useDispatch();
+  const posts = useSelector(selectPosts);
+  const loading = useSelector(selectPostsLoading);
+  const error = useSelector(selectPostsError);
 
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Fetch Popular posts on mount
   useEffect(() => {
-    async function fetchPopular() {
-      setLoading(true);
-      try {
-        const response = await fetch("https://www.reddit.com/r/popular.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch popular posts");
-        }
-        const json = await response.json();
-
-        // Reddit returns posts in json.data.children
-        const posts = json.data.children.map((child) => ({
-          id: child.data.id,
-          title: child.data.title,
-          author: child.data.author,
-          subreddit: child.data.subreddit,
-          url: child.data.url,
-          thumbnail: child.data.thumbnail,
-        }));
-
-        setSearchResults(posts);
-      } catch (err) {
-        console.error(err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchPopular();
-  }, []);
+    dispatch(fetchPosts()); // default "popular"
+  }, [dispatch]);
 
   return (
     <div className="home-page">
@@ -52,7 +24,7 @@ export default function Home() {
       {loading && <p>Loading popular posts...</p>}
       {error && <p>Error: {error}</p>}
 
-      {!loading && !error && <SearchResults results={searchResults} />}
+      {!loading && !error && <SearchResults results={posts} />}
     </div>
   );
 }
