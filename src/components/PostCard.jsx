@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function PostCard({ post }) {
+  const validThumbnail =
+  post.thumbnail &&
+  post.thumbnail.startsWith("http") &&
+  !["self", "default", "nsfw", "spoiler"].includes(post.thumbnail);
+
+  const decodedThumbnail = validThumbnail ? post.thumbnail.replace(/&amp;/g, "&") : null;
+  console.log(decodedThumbnail);
+
+
   return (
     <div className="post-card">
       <Link to={`/r/${post.subreddit}/${post.id}`}>
@@ -9,13 +18,13 @@ export default function PostCard({ post }) {
         <div className="post-layout">
 
           {/* Thumbnail */}
-          {post.thumbnail && post.thumbnail.startsWith("http") && (
+          {decodedThumbnail && (
             <img
-              src={post.thumbnail}
+              src={decodedThumbnail}
               alt={post.title}
               className="post-thumbnail"
             />
-          )}
+)}
 
           {/* Post info */}
           <div className="post-info">
