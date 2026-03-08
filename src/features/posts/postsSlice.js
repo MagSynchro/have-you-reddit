@@ -5,7 +5,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPosts",
   async (searchTerm = "popular") => {
-    const response = await fetch(`https://www.reddit.com/r/${searchTerm}.json`);
+    const response = await fetch(`/reddit/r/${searchTerm}.json`);
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }

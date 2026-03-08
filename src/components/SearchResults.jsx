@@ -1,5 +1,6 @@
-// src/components/SearchResults.jsx
+// search results component, recieves a results object then parses it through PostCard.
 import React from "react";
+import PostCard from "./PostCard";
 
 export default function SearchResults({ results }) {
   if (!results || results.length === 0) {
@@ -12,15 +13,9 @@ export default function SearchResults({ results }) {
 
   return (
     <section className="search-results">
-      <ul>
-        {results.map((item) => (
-          <li key={item.id} className="search-result-item">
-            {/* For now, just show the title */}
-            <h3>{item.title}</h3>
-            <p>By {item.author}</p>
-          </li>
-        ))}
-      </ul>
+      {results.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
     </section>
   );
 }
