@@ -10,6 +10,7 @@ const { subredditName, postId }  = useParams();
 const [post, setPost] = useState('');
 const [comments, setComments] = useState([]);
 const breadcrumbPath = [
+    { name: "Home", url: "/" },
   { name: `r/${subredditName}`, url: `/r/${subredditName}` },
   { name: "Post", url: `/r/${subredditName}/${postId}` }
 ];
