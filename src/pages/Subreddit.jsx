@@ -24,8 +24,7 @@ export default function Subreddit() {
   return (
     <div>
       <Header />
-      <Breadcrumbs path={breadcrumbPath} />
-      <h2>r/{subredditName}</h2>
+      <Breadcrumbs path={breadcrumbPath} />      
 
       {posts.map(post => (
         <PostCard key={post.id} post={post} />
