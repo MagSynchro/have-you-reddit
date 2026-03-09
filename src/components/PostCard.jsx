@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import formatNumber from "../utils/helpers.js";
 
 export default function PostCard({ post }) {
   const validThumbnail =
@@ -8,7 +9,7 @@ export default function PostCard({ post }) {
   !["self", "default", "nsfw", "spoiler"].includes(post.thumbnail);
 
   const decodedThumbnail = validThumbnail ? post.thumbnail.replace(/&amp;/g, "&") : null;
-  console.log(decodedThumbnail);
+  const decodedTitle = post.title.replace(/&amp;/g, "&");
 
 
   return (
@@ -21,17 +22,17 @@ export default function PostCard({ post }) {
           {decodedThumbnail && (
             <img
               src={decodedThumbnail}
-              alt={post.title}
+              alt={decodedTitle}
               className="post-thumbnail"
             />
 )}
 
           {/* Post info */}
           <div className="post-info">
-            <h3 className="post-title">{post.title}</h3>
+            <h3 className="post-title">{decodedTitle}</h3>
 
             <p className="post-meta">
-              Posted by u/{post.author} in r/{post.subreddit}
+              ⬆ {formatNumber(post.ups)} 💬 {formatNumber(post.num_comments)} Posted by u/{post.author} in r/{post.subreddit}
             </p>
           </div>
 

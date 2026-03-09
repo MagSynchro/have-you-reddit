@@ -18,6 +18,8 @@ export const fetchPosts = createAsyncThunk(
       subreddit: child.data.subreddit,
       url: child.data.url,
       thumbnail: child.data.thumbnail,
+      num_comments: child.data.num_comments,
+      ups: child.data.ups,
     }));
   }
 );
