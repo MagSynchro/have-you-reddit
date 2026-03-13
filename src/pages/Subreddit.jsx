@@ -16,7 +16,7 @@ export default function Subreddit() {
   const isLoading = useSelector(selectPostsLoading);
 
   useEffect(() => {
-    dispatch(fetchPosts(subredditName));
+    dispatch(fetchPosts({subreddit: subredditName, sort: "hot"}));
   }, [dispatch, subredditName]);
 
   if (isLoading) return <p>Loading...</p>;
@@ -24,7 +24,17 @@ export default function Subreddit() {
   return (
     <div>
       <Header />
-      <Breadcrumbs path={breadcrumbPath} />      
+      <Breadcrumbs path={breadcrumbPath} />
+      <div className="filter-bar">
+        <button
+          onClick={() => dispatch(fetchPosts({ subreddit: subredditName, sort: "hot" }))}
+        >Hot</button>
+        <button
+          onClick={() => dispatch(fetchPosts({ subreddit: subredditName, sort: "new" }))}
+        >New</button>
+        <button onClick={() => dispatch(fetchPosts({ subreddit: subredditName, sort: "top" }))}
+        >Top</button>
+      </div>      
 
       {posts.map(post => (
         <PostCard key={post.id} post={post} />

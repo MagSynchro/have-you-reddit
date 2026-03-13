@@ -4,8 +4,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Async thunk to fetch posts from Reddit
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPosts",
-  async (searchTerm = "popular") => {
-    const response = await fetch(`/reddit/r/${searchTerm}.json`);
+  async ({subreddit = "popular", sort = "" } = {}) => {
+
+    const endpoint = sort 
+    ? `/reddit/r/${subreddit}/${sort}.json` 
+    : `/reddit/r/${subreddit}.json`;
+
+    const response = await fetch(endpoint);
+
     if (!response.ok) {
       throw new Error("Failed to fetch posts");
     }

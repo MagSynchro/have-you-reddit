@@ -13,7 +13,7 @@ export default function Home() {
   const error = useSelector(selectPostsError);
 
   useEffect(() => {
-    dispatch(fetchPosts()); // default "popular"
+    dispatch(fetchPosts({ subreddit: "popular"})); // default "popular"
   }, [dispatch]);
 
   return (

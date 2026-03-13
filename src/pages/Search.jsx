@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import PostCard from "../components/PostCard";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 export default function Search(){
     const location = useLocation();
@@ -9,6 +10,10 @@ export default function Search(){
     const [isLoading, setIsLoading] = useState(true);
 
     const query = new URLSearchParams(location.search).get("q");
+        const breadcrumbPath = [
+        { name: "Home", url: "/" },
+        { name: `Search: ${query}`, url: `/search?q=${query}` }
+    ];
 
     useEffect(() => {
         async function fetchSearchResults() {
@@ -31,7 +36,7 @@ export default function Search(){
 
     if (isLoading) return (
         <div>
-            <Header />
+            <Header />            
             <p>Loading results...</p>
         </div>
     );
@@ -39,7 +44,7 @@ export default function Search(){
     return (
         <div className="search-page">
             <Header />
-            <h2>Search results for "{query}"</h2>
+            <Breadcrumbs path={breadcrumbPath} />
 
             {posts.length === 0 ? (
                 <p>No rsults found.</p>
