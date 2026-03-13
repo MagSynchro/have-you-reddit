@@ -12,7 +12,7 @@ const [comments, setComments] = useState([]);
 const breadcrumbPath = [
     { name: "Home", url: "/" },
   { name: `r/${subredditName}`, url: `/r/${subredditName}` },
-  { name: "Post", url: `/r/${subredditName}/${postId}` }
+  { name: post.title, url: `/r/${subredditName}/${postId}` }
 ];
 
 useEffect(() => {
