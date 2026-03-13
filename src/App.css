@@ -126,3 +126,15 @@ button:focus-visible {
   color: white;
   font-weight: bold;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  cursor: pointer;
+}

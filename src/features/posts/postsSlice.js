@@ -4,29 +4,30 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Async thunk to fetch posts from Reddit
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPosts",
-  async ({subreddit = "popular", sort = "" } = {}) => {
+  async ({ subreddit = "popular", sort = "hot", before = "", after = "" } = {}) => {
 
-    const endpoint = sort 
-    ? `/reddit/r/${subreddit}/${sort}.json` 
-    : `/reddit/r/${subreddit}.json`;
+    let endpoint = `/reddit/r/${subreddit}/${sort}.json`;
+
+    if (after) {
+      endpoint += `?after=${after}`;
+    }
 
     const response = await fetch(endpoint);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts");
-    }
     const json = await response.json();
-    // Map Reddit structure to simplified post objects
-    return json.data.children.map((child) => ({
-      id: child.data.id,
-      title: child.data.title,
-      author: child.data.author,
-      subreddit: child.data.subreddit,
-      url: child.data.url,
-      thumbnail: child.data.thumbnail,
-      num_comments: child.data.num_comments,
-      ups: child.data.ups,
-    }));
+
+    return {
+      posts: json.data.children.map(child => ({
+        id: child.data.id,
+        title: child.data.title,
+        author: child.data.author,
+        subreddit: child.data.subreddit,
+        url: child.data.url,
+        thumbnail: child.data.thumbnail,
+        num_comments: child.data.num_comments,
+        ups: child.data.ups
+      })),
+      after: json.data.after,      
+    };
   }
 );
 
@@ -36,6 +37,7 @@ const postsSlice = createSlice({
     posts: [],
     isLoading: false,
     error: false,
+    after: null,
   },
   reducers: {
     
@@ -48,7 +50,8 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.posts = action.payload;
+        state.posts = action.payload.posts;
+        state.after = action.payload.after;        
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.isLoading = false;
@@ -60,5 +63,6 @@ const postsSlice = createSlice({
 export const selectPosts = (state) => state.posts.posts;
 export const selectPostsLoading = (state) => state.posts.isLoading;
 export const selectPostsError = (state) => state.posts.error;
+export const selectAfter = (state) => state.posts.after;
 
 export default postsSlice.reducer;
