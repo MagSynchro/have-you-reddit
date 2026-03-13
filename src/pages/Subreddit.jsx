@@ -7,6 +7,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import PostCard from "../components/PostCard";
 import FilterBar from "../components/FilterBar";
 import Pagination from "../components/Pagination";
+import { addVisitedSubreddit } from "../features/subreddits/subredditsSlice";
 
 export default function Subreddit() {
   const { subredditName } = useParams();
@@ -21,6 +22,7 @@ export default function Subreddit() {
 
   useEffect(() => {
     dispatch(fetchPosts({subreddit: subredditName, sort}));
+    dispatch(addVisitedSubreddit(subredditName));
   }, [dispatch, subredditName, sort]);
 
   const handleNext = () => {

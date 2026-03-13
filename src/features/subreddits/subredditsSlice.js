@@ -1,22 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    subreddits: [], //Will hold subreddits from Reddit
-    isLoading: false,
-    error: false,
-}
+const subredditsSlice = createSlice({
+  name: "subreddits",
+  initialState: {
+    visited: ["popular"]
+  },
+  reducers: {
 
-export const subredditsSlice = createSlice({
-    name: "subreddits",
-    initialState,
-    reducers: {
-        //Add reducers as created here:
+    addVisitedSubreddit: (state, action) => {
+      const subreddit = action.payload.toLowerCase();
 
-    },
+      if (!state.visited.includes(subreddit)) {
+        state.visited.push(subreddit);
+        if (state.visited.length > 10) {
+            state.visited.shift();
+        }
+      }
+    }
+
+  }
 });
 
-//Selector to export posts
-export const selectSubreddits = (state) => state.subreddits.subreddits;
+export const { addVisitedSubreddit } = subredditsSlice.actions;
 
-//export reducer
+export const selectVisitedSubreddits = (state) => state.subreddits.visited;
+
 export default subredditsSlice.reducer;
