@@ -1,11 +1,11 @@
 // netlify/functions/reddit.js
-import fetch from "node-fetch"; // only needed for Node <18
+import fetch from "node-fetch";
 
 export async function handler(event, context) {
   try {
     const { subreddit, sort = "hot", postId, query, after } = event.queryStringParameters || {};
 
-    let url = "";
+    let url;
     if (query) {
       url = `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}`;
     } else if (postId) {
@@ -18,12 +18,21 @@ export async function handler(event, context) {
 
     const response = await fetch(url, {
       headers: {
-        "User-Agent": "have-you-reddit-app/0.1 by yourusername", // Reddit requires a user-agent
-        "Accept": "application/json"
-      }
+        "User-Agent": "have-you-reddit-app/0.1 by yourusername",
+        "Accept": "application/json",
+      },
     });
 
-    const data = await response.json();
+    const text = await response.text(); // get raw text first
+    let data;
+    try {
+      data = JSON.parse(text); // try parse JSON
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Reddit returned invalid JSON", raw: text }),
+      };
+    }
 
     return {
       statusCode: 200,
