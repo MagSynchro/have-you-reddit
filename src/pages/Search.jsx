@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/config";
+import { redditFetch } from "../utils/redditFetch.js";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import PostCard from "../components/PostCard";
@@ -19,20 +19,13 @@ export default function Search(){
 
     useEffect(() => {
         async function fetchSearchResults() {
-
             if (!query) return;
-
             setIsLoading(true);
-
-            const response = await fetch(`${BASE_URL}/search.json?q=${query}`);
-            const json = await response.json();
-
-            const results = json.data.children.map((post) => post.data);
-
+            const json = await redditFetch({ query });
+            const results = json.data.children.map(post => post.data);
             setSPosts(results);
             setIsLoading(false);
         }
-
         fetchSearchResults();
     }, [query]);
 

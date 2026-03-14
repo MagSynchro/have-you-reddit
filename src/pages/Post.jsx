@@ -1,6 +1,6 @@
 // Component to render/build Reddit post with comments
 import React, { useEffect, useState } from "react";
-import { BASE_URL } from "../utils/config.js";
+import { redditFetch } from "../utils/redditFetch.js";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { useParams } from "react-router-dom";
 import { formatNumber, removeAmp } from "../utils/helpers.js";
@@ -14,10 +14,7 @@ export default function Post() {
 
   useEffect(() => {
     async function fetchPostData() {
-      const response = await fetch(
-        `${BASE_URL}/r/${subredditName}/comments/${postId}.json`
-      );
-      const json = await response.json();
+      const json = await redditFetch({ subreddit: subredditName, postId });
       setPost(json[0].data.children[0].data);
       setComments(json[1].data.children);
     }
