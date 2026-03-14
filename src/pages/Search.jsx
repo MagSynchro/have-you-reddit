@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../utils/config";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import PostCard from "../components/PostCard";
@@ -23,7 +24,7 @@ export default function Search(){
 
             setIsLoading(true);
 
-            const response = await fetch(`/reddit/search.json?q=${query}`);
+            const response = await fetch(`${BASE_URL}/search.json?q=${query}`);
             const json = await response.json();
 
             const results = json.data.children.map((post) => post.data);
