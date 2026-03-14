@@ -36,15 +36,11 @@ export default function Search(){
     }, [query]);
 
     if (isLoading) return (
-        <div>
-            <Header />            
-            <p>Loading results...</p>
-        </div>
+        <div className="loading-overlay">Loading results...</div>
     );
 
     return (
-        <div className="search-page">
-            <Header />
+        <div className="search-page">            
             <Breadcrumbs path={breadcrumbPath} />
 
             {posts.length === 0 ? (

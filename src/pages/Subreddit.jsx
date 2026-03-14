@@ -31,11 +31,10 @@ export default function Subreddit() {
   window.scrollTo(0, 0);
 };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <div className="loading-overlay">Loading...</div>;
 
   return (
-    <div>
-      <Header />
+    <div>      
       <Breadcrumbs path={breadcrumbPath} />
       <FilterBar currentSort={sort} onSortChange={setSort} />
 

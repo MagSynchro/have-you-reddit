@@ -27,12 +27,11 @@ export default function Home() {
   }, [dispatch, sort]);
 
   return (
-    <div className="home-page">
-      <Header />
+    <div className="home-page">      
       <Breadcrumbs path={breadcrumbPath} />
       <FilterBar currentSort={sort} onSortChange={setSort} />
 
-      {loading && <p>Loading popular posts...</p>}
+      {loading && <div className="loading-overlay">Loading popular posts...</div>}
       {error && <p>Error: {error}</p>}
 
       {!loading && !error && <SearchResults results={posts} />}

@@ -24,7 +24,7 @@ export default function Post() {
     fetchPostData();
   }, [subredditName, postId]);
 
-  if (!post) return <p>Loading...</p>;
+  if (!post) return <div className="loading-overlay">Loading...</div>;
 
   const breadcrumbPath = [
     { name: "Home", url: "/" },
@@ -87,8 +87,7 @@ export default function Post() {
   };
 
   return (
-    <div className="post-page">
-      <Header />
+    <div className="post-page">      
       <Breadcrumbs path={breadcrumbPath} />
 
       <h2>{removeAmp(post.title)}</h2>
