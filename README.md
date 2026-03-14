@@ -1,16 +1,70 @@
-# React + Vite
+Technologies used:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React
+Redux Toolkit
+React Router
+Vite
+Jest
+React Testing Library
+Netlify (deployment)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Retro ASCII Mockup / Wireframe:
 
-## React Compiler
+Initial page / home page:
+Home>r/subreddit/> Post >            <= (Breadcrumbs) (Using React Router path)
+ ------------------------------
+|      HAVE YOU REDDIT?       | <= (Header) (Gotta have that product name.)
+|-----------------------------|
+|[Popular▼] [ Search ______ ] | <= (Search Box, Combo box. Landing search is Popular)
+|-----------------------------|
+| Result One for Popular      | <= (Search Results list.)
+| Result Two for Popular      |
+| Result Three for Popular    |
+| Result Four for Popular     |
+| Result Five for Popular     |
+-------------------------------
+-------------------------------
+|            Next>            | <== Page Navigation
+ ------------------------------
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Subreddit view:
+-------------------------------------------------
+|               HAVE YOU REDDIT?                |
+|-----------------------------------------------|
+|[Popular▼] [ Search ______ ]                   | <= (Search Box, Combo box. Landing search is Popular)
+|-----------------------------------------------|
+|Home>r/gaming/>                                |
+|-----------------------------------------------|
+|  Post 1                                       |
+|  Post 2                                       |
+|  Post 3                                       |
+|  Post 4                                       |
+-------------------------------------------------
+-------------------------------------------------
+|                    Next>                      | <== Page Navigation
+-------------------------------------------------
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Post View:
+Home>r/SubReddit>Post Title>
+-------------------------------------------------
+|               HAVE YOU REDDIT?                |
+|-----------------------------------------------|
+|[Popular▼] [ Search ______ ]                   | <= (Search Box, Combo box. Landing search is Popular)
+|-----------------------------------------------|
+|Home>r/gaming/>post title                      |
+|-----------------------------------------------|
+|  Image / Video / Content                      |
+|                                               |
+-------------------------------------------------
+| Comment                                       |
+|-----------------------------------------------|
+| SubComment                                    |
+| SubComment                                    |
+-------------------------------------------------
+| Comment                                       |
+-------------------------------------------------
+-------------------------------------------------
+|                    Next>                      | <== Page Navigation
+-------------------------------------------------

@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "./SearchBar";
+import "../styles/Header.css";
 import { useSelector } from "react-redux";
 import { selectVisitedSubreddits } from "../features/subreddits/subredditsSlice";
 import { useNavigate, useParams } from "react-router-dom";

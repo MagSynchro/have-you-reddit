@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/FilterBar.css";
 
 export default function FilterBar({ currentSort, onSortChange }) {
     const options = ["hot", "new", "top", "best"];

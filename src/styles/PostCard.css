@@ -1,0 +1,26 @@
+.post-card {
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+}
+
+.post-layout {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.post-thumbnail {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+}
+
+.post-title {
+  font-size: 16px;
+  margin: 0;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: gray;
+}

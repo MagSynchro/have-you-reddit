@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/PostCard.css"
 import { formatNumber, removeAmp } from "../utils/helpers.js";
 
 export default function PostCard({ post }) {

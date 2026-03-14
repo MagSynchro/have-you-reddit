@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Comment.css";
 import { formatNumber, removeAmp } from "../utils/helpers";
 
 export default function Comment({comment, depth = 0}) {

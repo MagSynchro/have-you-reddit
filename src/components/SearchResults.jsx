@@ -1,5 +1,6 @@
 // search results component, recieves a results object then parses it through PostCard.
 import React from "react";
+import "../styles/SearchResults.css";
 import PostCard from "./PostCard";
 
 export default function SearchResults({ results }) {
