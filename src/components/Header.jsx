@@ -9,6 +9,10 @@ export default function Header() {
   const visited = useSelector(selectVisitedSubreddits);
   const { subredditName } = useParams();
   const currentSub = subredditName || "popular";
+  const displaySubs = [
+  currentSub,
+  ...visited.filter((sub) => sub !== currentSub)
+];
   const navigate = useNavigate();
 
   return (
@@ -19,9 +23,9 @@ export default function Header() {
         value={currentSub}
         onChange={(e) => navigate(`/r/${e.target.value}`)}
       >
-        {visited.map((sub) => (
+        {displaySubs.map((sub) => (
           <option key={sub} value={sub}>
-            {sub === "popular" ? "Popular" : `r/${sub}`}
+            {sub === "popular" ? "r/popular" : `r/${sub}`}
           </option>
         ))}
       </select>

@@ -8,14 +8,16 @@ const subredditsSlice = createSlice({
   reducers: {
 
     addVisitedSubreddit: (state, action) => {
-      const subreddit = action.payload.toLowerCase();
+        const subreddit = action.payload.toLowerCase();
 
-      if (!state.visited.includes(subreddit)) {
+        // remove if it already exists so we can move it to the end
+        state.visited = state.visited.filter((sub) => sub !== subreddit);
+        // add newest visit
         state.visited.push(subreddit);
+        // keep list at last 10 subreddits visited.
         if (state.visited.length > 10) {
-            state.visited.shift();
+        state.visited.shift();
         }
-      }
     }
 
   }
