@@ -3,10 +3,9 @@ import fetch from "node-fetch"; // only needed for Node <18
 
 export async function handler(event, context) {
   try {
-    const { subreddit, sort = "hot", postId, query, after } = event.queryStringParameters;
+    const { subreddit, sort = "hot", postId, query, after } = event.queryStringParameters || {};
 
     let url = "";
-
     if (query) {
       url = `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}`;
     } else if (postId) {
@@ -17,9 +16,13 @@ export async function handler(event, context) {
       url = `https://www.reddit.com/r/popular/hot.json`;
     }
 
-    console.log("Fetching URL:", url);
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "have-you-reddit-app/0.1 by yourusername", // Reddit requires a user-agent
+        "Accept": "application/json"
+      }
+    });
 
-    const response = await fetch(url);
     const data = await response.json();
 
     return {
