@@ -7,6 +7,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import PostCard from "../components/PostCard";
 import FilterBar from "../components/FilterBar";
 import Pagination from "../components/Pagination";
+import "../styles/Subreddit.css";
 import { addVisitedSubreddit } from "../features/subreddits/subredditsSlice";
 
 export default function Subreddit() {

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import PostCard from "../components/PostCard";
 import Breadcrumbs from "../components/Breadcrumbs";
+import "../styles/Search.css";
 
 export default function Search(){
     const location = useLocation();

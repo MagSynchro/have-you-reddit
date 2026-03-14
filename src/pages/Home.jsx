@@ -5,6 +5,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import SearchResults from "../components/SearchResults";
 import FilterBar from "../components/FilterBar";
 import Pagination from "../components/Pagination";
+import "../styles/Home.css";
 import { fetchPosts, selectPosts, selectPostsLoading, selectPostsError, selectAfter } from "../features/posts/postsSlice";
 
 export default function Home() {

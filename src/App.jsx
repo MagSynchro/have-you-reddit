@@ -11,7 +11,7 @@ import Post from "./pages/Post";
 export default function App() {
   
   return (
-    <div className="app">
+    <div className="app-container">
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />

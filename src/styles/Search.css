@@ -1,0 +1,25 @@
+.search-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.search-results {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .search-results, .subreddit-posts {
+    gap: 8px;
+  }
+}

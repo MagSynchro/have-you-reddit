@@ -1,8 +1,8 @@
 .search-results {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 10px 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 0;
+  box-sizing: border-box;
 }
 
 .search-result-item {

@@ -5,6 +5,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { useParams } from "react-router-dom";
 import { formatNumber, removeAmp } from "../utils/helpers.js";
 import Comment from "../components/Comment.jsx";
+import "../styles/Post.css";
 
 export default function Post() {
   const { subredditName, postId } = useParams();

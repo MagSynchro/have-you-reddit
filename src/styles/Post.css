@@ -1,0 +1,37 @@
+.post-page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px 0; /* top/bottom padding */
+  box-sizing: border-box;
+}
+
+.post-body {
+  margin: 1rem 0;
+}
+
+.comment-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-thread > div {
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .post-body img,
+  .post-body video {
+    max-width: 100%;
+  }
+
+  .comment-thread {
+    gap: 8px;
+  }
+
+  .comment-thread > div {
+    margin-left: 0; /* remove large indentation for small screens */
+    padding-left: 5px;
+    border-left: 2px solid #ddd;
+  }
+}
