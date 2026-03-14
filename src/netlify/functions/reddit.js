@@ -17,6 +17,8 @@ export async function handler(event, context) {
       url = `https://www.reddit.com/r/popular/hot.json`;
     }
 
+    console.log("Fetching URL:", url);
+
     const response = await fetch(url);
     const data = await response.json();
 
