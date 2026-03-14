@@ -20,6 +20,7 @@ export default function SearchBar() {
             <input
              type="text"
              placeholder="Search Reddit..."
+             size={10}
              value={term}
              onChange={(e) => setTerm(e.target.value)}
             />
